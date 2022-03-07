@@ -26,18 +26,34 @@ export default function Products() {
     setProducts(productsList);
   };
 
+  // const editProduct = async (id) => {
+  //   alert(`editProduct(): ${id}`);
+  // };
+  
+  // const deleteProduct = async (id) => {
+  //   alert(`deleteProduct(): ${id}`);
+  // };
+  
+  // const createProduct = async () => {
+  //   alert('createProduct()');
+  // };
+  
+
   useEffect(() => {
     getProducts();
   }, []);
 
   return (
     <List>
-      <PageHeader pageLabel={pageLabel}></PageHeader>
+      <PageHeader pageLabel={pageLabel}>
+        <PageActions />
+      </PageHeader>
       <PageContent>
         <PageContentLabels labels={itemsLabels} />
         <PageContentItems products={products} />
       </PageContent>
     </List>
+
   );
 }
 
@@ -52,8 +68,49 @@ function PageContentItems({ products }) {
           <TableCell>{product.category}</TableCell>
           <TableCell>{product.count}</TableCell>
           <TableCell>{product.rating}</TableCell>
+          <PageContentActions id={product.id} />
         </TableRow>
       ))}
     </TableBody>
   );
 }
+
+function PageActions({ createProduct }) {
+  return (
+    
+    <>
+      <Button
+        color="primary"
+        variant="contained"
+        onClick={() => alert('createProduct()')} >
+        Create
+      </Button>
+    </>
+  );
+}
+
+function PageContentActions({ id, editProduct, deleteProduct}) {
+  return (
+    <>
+      <TableCell>
+        <Button
+          size="small"
+          variant="contained"
+          onClick={() => alert(`editProduct(): ${id}`)}
+        >
+          Edit
+        </Button>
+      </TableCell>
+      <TableCell>
+        <Button
+          size="small"
+          variant="contained"
+          onClick={() => alert(`deleteProduct(): ${id}`)}
+        >
+          Delete
+        </Button>
+      </TableCell>
+    </>
+  );
+}
+
