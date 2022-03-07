@@ -16,4 +16,6 @@ prettier:
 Husky
 -npx husky-init && npm install
 
-##new
+##INICIAR O SERVIDOR
+Acesse o módulo frontend do projeto e digite o comando: 
+-npm run dev
